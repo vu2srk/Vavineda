@@ -5,14 +5,30 @@ class Node < OpenStruct
 	def initialize(tag, parent, &block)
 		super()
 
-		puts tag
-
 		self.parent = parent
 		self.parent.children << self unless parent.nil? 
 		self.tag = tag
 		self.children = []
 
 		instance_eval(&block) unless block.nil?
+	end
+
+	def find_by_tag(tag)
+    		return self if self.tag == tag
+
+    		children.each do|c|
+      			res = c.find_by_tag(tag)
+      			return res unless res.nil?
+    		end
+
+    		return nil
+  	end
+
+	def moveChild(tag, to)
+		child = find_by_tag(tag)
+		child.parent.children.delete(child)
+		child.parent = to
+		child.parent.children << child
 	end
 	
 	def self.root(&block)
