@@ -1,7 +1,7 @@
 Vavineda
 ========
 
-Hey!
+To all gamers, Sheldon lovers and imagineers - this goes out to you
 
 Vaavineda is a fun, text-based adventure game that I wrote in Ruby. 
 
